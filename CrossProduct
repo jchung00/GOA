@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class test {
+	public static void main(String[] args){
+		System.out.println("Please enter the x-coordinate of the first space vector:");
+		Scanner sc1 = new Scanner(System.in);
+		double a1 = sc1.nextDouble();
+		System.out.println("Please enter the y-coordinate of the first space vector:");
+		Scanner sc2 = new Scanner(System.in);
+		double a2 = sc2.nextDouble();
+		System.out.println("Please enter the z-coordinate of the first space vector:");
+		Scanner sc3 = new Scanner(System.in);
+		double a3 = sc3.nextDouble();
+		System.out.println("Please enter the x-coordinate of the second space vector:");
+		Scanner sc4 = new Scanner(System.in);
+		double b1 = sc4.nextDouble();
+		System.out.println("Please enter the y-coordinate of the second space vector:");
+		Scanner sc5 = new Scanner(System.in);
+		double b2 = sc5.nextDouble();
+		System.out.println("Please enter the z-coordinate of the second space vector:");
+		Scanner sc6 = new Scanner(System.in);
+		double b3 = sc6.nextDouble();
+		double[] crossProduct = new double[3]; 
+		crossProduct[0] = a2*b3-a3*b2;
+		crossProduct[1] = a3*b1-a1*b3;
+		crossProduct[2] = a1*b2-a2*b1; 
+		System.out.println("Cross Product:");
+		for(int i=0; i<crossProduct.length; i++){
+			System.out.println(crossProduct[i]);
+		}
+	}
+}
