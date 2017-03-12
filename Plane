@@ -1,0 +1,100 @@
+import java.util.Scanner;
+
+
+public class plane {
+	public static double[][] rref(double[][] mat)
+	{
+	    double[][] rref = new double[mat.length][mat[0].length];
+
+	    /* Copy matrix */
+	    for (int r = 0; r < rref.length; ++r)
+	    {
+	        for (int c = 0; c < rref[r].length; ++c)
+	        {
+	            rref[r][c] = mat[r][c];
+	        }
+	    }
+
+	    for (int p = 0; p < rref.length; ++p)
+	    {
+	        /* Make this pivot 1 */
+	        double pv = rref[p][p];
+	        if (pv != 0)
+	        {
+	            double pvInv = 1.0 / pv;
+	            for (int i = 0; i < rref[p].length; ++i)
+	            {
+	                rref[p][i] *= pvInv;
+	            }
+	        }
+
+	        /* Make other rows zero */
+	        for (int r = 0; r < rref.length; ++r)
+	        {
+	            if (r != p)
+	            {
+	                double f = rref[r][p];
+	                for (int i = 0; i < rref[r].length; ++i)
+	                {
+	                    rref[r][i] -= f * rref[p][i];
+	                }
+	            }
+	        }
+	    }
+
+	    return rref;
+	}
+	public static void main(String[] args){
+		System.out.println("Please enter the x-coordinate of the first space vector:");
+		Scanner sc1 = new Scanner(System.in);
+		double a1 = sc1.nextDouble();
+		System.out.println("Please enter the y-coordinate of the first space vector:");
+		Scanner sc2 = new Scanner(System.in);
+		double a2 = sc2.nextDouble();
+		System.out.println("Please enter the z-coordinate of the first space vector:");
+		Scanner sc3 = new Scanner(System.in);
+		double a3 = sc3.nextDouble();
+		System.out.println("Please enter the x-coordinate of the second space vector:");
+		Scanner sc4 = new Scanner(System.in);
+		double b1 = sc4.nextDouble();
+		System.out.println("Please enter the y-coordinate of the second space vector:");
+		Scanner sc5 = new Scanner(System.in);
+		double b2 = sc5.nextDouble();
+		System.out.println("Please enter the z-coordinate of the second space vector:");
+		Scanner sc6 = new Scanner(System.in);
+		double b3 = sc6.nextDouble();
+		System.out.println("Please enter the x-coordinate of the third space vector:");
+		Scanner sc7 = new Scanner(System.in);
+		double c1 = sc7.nextDouble();
+		System.out.println("Please enter the y-coordinate of the third space vector:");
+		Scanner sc8 = new Scanner(System.in);
+		double c2 = sc8.nextDouble();
+		System.out.println("Please enter the z-coordinate of the third space vector:");
+		Scanner sc9 = new Scanner(System.in);
+		double c3 = sc9.nextDouble();
+		double[][] matrix = new double[3][4];
+		double d=1;
+		matrix[0][0] = a1;
+		matrix[0][1] = a2;
+		matrix[0][2] = a3;
+		matrix[0][3] = d;
+		matrix[1][0] = b1;
+		matrix[1][1] = b2;
+		matrix[1][2] = b3;
+		matrix[1][3] = d;
+		matrix[2][0] = c1;
+		matrix[2][1] = c2;
+		matrix[2][2] = c3;
+		matrix[2][3] = d;
+		double[][] newMatrix = rref(matrix);
+		System.out.println("Reduced Row-Echelon Form:");
+		for(int r=0; r<newMatrix.length; r++){
+			for(int c=0; c<newMatrix[0].length; c++){
+				System.out.print(newMatrix[r][c]+" ");
+			}
+			System.out.println();
+		}
+		System.out.println("Equation of the Plane:");
+		System.out.println(newMatrix[0][3]+"x + "+newMatrix[1][3]+"y + "+newMatrix[2][3]+"z = 1");
+	}
+}
